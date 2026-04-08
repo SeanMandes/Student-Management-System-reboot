@@ -53,27 +53,26 @@ public class CourseDAO {
         return courses;
     }
 
-    public void updateStudent(int id, String student_name, String student_email, int age) {
-        String sql = "update students set student_name = ?, student_email = ?, age = ? where student_id = ?";
+    public void updateCourse(int course_id, String course_name, String instructor) {
+        String sql = "update courses set course_name = ?, instructor = ? where course_id = ?";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setString(1, student_name);
-            ps.setString(2, student_email);
-            ps.setInt(3, age);
-            ps.setInt(4, id);
+            ps.setInt(3, course_id);
+            ps.setString(1, course_name);
+            ps.setString(2, instructor);
 
             ps.executeUpdate();
-            System.out.println("Student updated!");
+            System.out.println("Course updated!");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteStudent(int id) {
-        String sql = "delete from students where student_id = ?";
+    public void deleteCourse(int id) {
+        String sql = "delete from courses where course_id = ?";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -81,7 +80,7 @@ public class CourseDAO {
             ps.setInt(1, id);
 
             ps.executeUpdate();
-            System.out.println("Student removed!");
+            System.out.println("Course removed!");
             connection.close();
 
         } catch (SQLException e) {
