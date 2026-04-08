@@ -1,4 +1,6 @@
+import dao.CourseDAO;
 import dao.StudentDAO;
+import model.Course;
 import model.Student;
 import java.util.List;
 
@@ -8,14 +10,19 @@ public class Main {
         StudentDAO sdao = new StudentDAO();
         // sdao.addStudent(new Student("John", "john@gmail.com", 21));
 
-        List<Student> students = sdao.getAllStudents();
-        for (Student student : students) {
-            System.out.println(student.getName());
-        }
+        /*
+         * List<Student> students = sdao.getAllStudents();
+         * for (Student student : students) {
+         * System.out.println(student.getName());
+         * }
+         */
 
         // sdao.deleteStudent(10);
 
         // sdao.updateStudent(1, "CharlieBruh", "charliebruh@gmail.com", 20);
+
+        CourseDAO cdao = new CourseDAO();
+        cdao.addCourse(new Course("Math", "Dr. Joe"));
 
     }
 }
