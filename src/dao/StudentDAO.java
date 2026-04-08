@@ -40,17 +40,17 @@ public class StudentDAO {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Student student = new Student(
-                    resultSet.getInt("student_id"), 
-                    resultSet.getString("student_name", 
-                    resultSet.getString("student_email", 
-                    resultSet.getInt("age"));
-                students.add(new Student(id, student_name, student_email, age));
+                        resultSet.getInt("student_id"),
+                        resultSet.getString("student_name"),
+                        resultSet.getString("student_email"),
+                        resultSet.getInt("age"));
+                students.add(student);
             }
 
             connection.close();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return students;
