@@ -22,7 +22,11 @@ public class Main {
         // sdao.updateStudent(1, "CharlieBruh", "charliebruh@gmail.com", 20);
 
         CourseDAO cdao = new CourseDAO();
-        cdao.addCourse(new Course("Math", "Dr. Joe"));
+        // cdao.addCourse(new Course("Math", "Dr. Joe"));
 
+        List<Course> courses = cdao.getAllCourses();
+        for (Course course : courses) {
+            System.out.println(course.getCourseName());
+        }
     }
 }

@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,28 +30,27 @@ public class CourseDAO {
         }
     }
 
-    public List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<>();
-        String sql = "select * from students";
+    public List<Course> getAllCourses() {
+        List<Course> courses = new ArrayList<>();
+        String sql = "select * from courses";
         try {
             Connection connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                Student student = new Student(
-                        resultSet.getInt("student_id"),
-                        resultSet.getString("student_name"),
-                        resultSet.getString("student_email"),
-                        resultSet.getInt("age"));
-                students.add(student);
+                Course course = new Course(
+                        resultSet.getInt("course_id"),
+                        resultSet.getString("course_name"),
+                        resultSet.getString("instructor"));
+                courses.add(course);
             }
 
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return students;
+        return courses;
     }
 
     public void updateStudent(int id, String student_name, String student_email, int age) {
