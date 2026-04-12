@@ -4,19 +4,16 @@ public class Enrollment {
     private int courseId;
     private int studentId;
     private int enrollmentId;
-    private String grade;
 
-    public Enrollment(int courseId, int studentId, int enrollmentId, String grade) {
+    public Enrollment(int courseId, int studentId, int enrollmentId) {
         this.courseId = courseId;
         this.studentId = studentId;
         this.enrollmentId = enrollmentId;
-        this.grade = grade;
     }
 
-    public Enrollment(int courseId, int studentId, String grade) {
+    public Enrollment(int courseId, int studentId) {
         this.courseId = courseId;
         this.studentId = studentId;
-        this.grade = grade;
     }
 
     public int getCourseId() {
@@ -29,10 +26,6 @@ public class Enrollment {
 
     public int getEnrollmentId() {
         return enrollmentId;
-    }
-
-    public String getGrade() {
-        return grade;
     }
 
 }

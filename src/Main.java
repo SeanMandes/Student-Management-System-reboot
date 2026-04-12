@@ -1,6 +1,8 @@
 import dao.CourseDAO;
+import dao.EnrollmentDAO;
 import dao.StudentDAO;
 import model.Course;
+import model.Enrollment;
 import model.Student;
 import java.util.List;
 
@@ -33,6 +35,11 @@ public class Main {
         // cdao.deleteCourse(3);
 
         // cdao.updateCourse(4, "Psychology", "Prof. Jotaro");
+
+        EnrollmentDAO edao = new EnrollmentDAO();
+        Student student = new Student("Charlie", "charlie@gmail.com", 19);
+        Course course = new Course("Physics", "Dr. Brown");
+        edao.enrollStudent(student, course);
 
     }
 }
