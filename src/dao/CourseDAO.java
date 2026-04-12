@@ -21,13 +21,11 @@ public class CourseDAO {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                System.out.println("Course exist");
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Course doesnt't exist");
         return false;
     }
 
@@ -36,6 +34,11 @@ public class CourseDAO {
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
+
+            if (courseExist(course)) {
+                System.out.println("Course already exist");
+                return;
+            }
 
             ps.setString(1, course.getCourseName());
             ps.setString(2, course.getInstructor());

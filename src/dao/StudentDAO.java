@@ -21,13 +21,11 @@ public class StudentDAO {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                System.out.println("Student exist");
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Student doesnt't exist");
         return false;
     }
 
@@ -36,6 +34,11 @@ public class StudentDAO {
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
+
+            if (studentExist(student)) {
+                System.out.println("Student already exist");
+                return;
+            }
 
             ps.setString(1, student.getName());
             ps.setString(2, student.getEmail());
