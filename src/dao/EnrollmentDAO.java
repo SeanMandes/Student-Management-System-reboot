@@ -11,14 +11,21 @@ import model.Student;
 public class EnrollmentDAO {
     public void enrollStudent(Student student, Course course) {
         String sql = "insert into enrollment (student_id, course_id) values(?, ?)";
-        System.out.println("First step!");
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, student.getId());
+            int sID = student.getId();
             ps.setInt(2, course.getId());
+            int cID = course.getId();
+            System.out.println("Student ID: " + sID);
+            System.out.println("Student ID: " + cID);
 
-            System.out.println("Second step!");
+            String sname = student.getName();
+            String cname = course.getCourseName();
+            System.out.println("Student ID: " + sname);
+            System.out.println("Student ID: " + cname);
+
             ps.executeUpdate();
             System.out.println("Enrollment added!");
 

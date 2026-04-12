@@ -37,8 +37,8 @@ public class Main {
         // cdao.updateCourse(4, "Psychology", "Prof. Jotaro");
 
         EnrollmentDAO edao = new EnrollmentDAO();
-        Student student = new Student("Charlie", "charlie@gmail.com", 19);
-        Course course = new Course("Physics", "Dr. Brown");
+        Student student = new Student(2, "David", "david@gmail.com", 23);
+        Course course = new Course(2, "Chemistry", "Dr. White");
         edao.enrollStudent(student, course);
 
     }
