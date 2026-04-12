@@ -12,6 +12,24 @@ import db.DBConnection;
 import model.Student;
 
 public class StudentDAO {
+    public boolean studentExist(Student student) {
+        String sql = "select * from students where student_name = ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, student.getName());
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                System.out.println("Student exist");
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Student doesnt't exist");
+        return false;
+    }
 
     public void addStudent(Student student) {
         String sql = "insert into students(student_name, student_email, age) values (?, ?, ?)";

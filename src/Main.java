@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         StudentDAO sdao = new StudentDAO();
-        // sdao.addStudent(new Student("John", "john@gmail.com", 21));
+        sdao.studentExist(new Student("John", "john@gmail.com", 21));
 
         /*
          * List<Student> students = sdao.getAllStudents();
@@ -24,7 +24,7 @@ public class Main {
         // sdao.updateStudent(1, "CharlieBruh", "charliebruh@gmail.com", 20);
 
         CourseDAO cdao = new CourseDAO();
-        // cdao.addCourse(new Course("Math", "Dr. Joe"));
+        cdao.courseExist(new Course("Math", "Dr. Joe"));
         /*
          * List<Course> courses = cdao.getAllCourses();
          * for (Course course : courses) {

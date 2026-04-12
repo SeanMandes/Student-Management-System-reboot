@@ -12,6 +12,25 @@ import db.DBConnection;
 import model.Course;
 
 public class CourseDAO {
+    public boolean courseExist(Course course) {
+        String sql = "select * from courses where course_name = ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, course.getCourseName());
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                System.out.println("Course exist");
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Course doesnt't exist");
+        return false;
+    }
+
     public void addCourse(Course course) {
         String sql = "insert into courses(course_name, instructor) values (?, ?)";
         try {
