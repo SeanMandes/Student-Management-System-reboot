@@ -23,6 +23,7 @@ public class CourseDAO {
             if (rs.next() && rs.getInt(1) > 0) {
                 return true;
             }
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -111,19 +112,24 @@ public class CourseDAO {
     }
 
     public int getCourseID(String course_name) {
-        int id = 0;
-        String sql = "select course_id from courses where course_name = ?";
+        int id = -1;
+        String sql = "select * from courses where course_name = ?";
 
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, sql);
+
+            preparedStatement.setString(1, course_name);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             id = resultSet.getInt("course_id");
+            String name = resultSet.getString("course_name");
+            String instructor = resultSet.getString("instructor");
 
-            System.out.println("Course ID: " + id);
+            System.out.println("course id = " + id);
+            System.out.println("course name = " + name);
+            System.out.println("instructor name = " + instructor);
 
             connection.close();
         } catch (SQLException e) {

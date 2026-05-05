@@ -39,14 +39,13 @@ public class Main {
         // cdao.updateCourse(4, "Psychology", "Prof. Jotaro");
 
         StudentDAO student = new StudentDAO();
-        student.getStudentID("Charlie");
-
+        int student_id = student.getStudentID("charlie@gmail.com");
+        System.out.println("------------------------------");
         CourseDAO course = new CourseDAO();
-        course.getCourseID("Physics");
-
-        // EnrollmentDAO edao = new EnrollmentDAO();
-
-        // edao.enrollStudent(student_id, course_id);
+        int course_id = course.getCourseID("History");
+        System.out.println("------------------------------");
+        EnrollmentDAO edao = new EnrollmentDAO();
+        edao.enrollStudent(student_id, course_id);
 
     }
 }
