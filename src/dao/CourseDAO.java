@@ -17,10 +17,10 @@ public class CourseDAO {
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, course.getCourseName());
+            ps.setInt(1, course.getId());
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next() && rs.getInt(1) > 0) {
                 return true;
             }
         } catch (SQLException e) {
@@ -35,7 +35,7 @@ public class CourseDAO {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            if (courseExist(course)) {
+            if (!courseExist(course)) {
                 System.out.println("Course already exist");
                 return;
             }
@@ -108,6 +108,29 @@ public class CourseDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getCourseID(String course_name) {
+        int id = 0;
+        String sql = "select course_id from courses where course_name = ?";
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            id = resultSet.getInt("course_id");
+
+            System.out.println("Course ID: " + id);
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
     }
 
 }

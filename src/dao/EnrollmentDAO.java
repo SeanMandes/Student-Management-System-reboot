@@ -14,6 +14,7 @@ public class EnrollmentDAO {
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
+
             ps.setInt(1, student.getId());
             int sID = student.getId();
             ps.setInt(2, course.getId());
@@ -23,8 +24,8 @@ public class EnrollmentDAO {
 
             String sname = student.getName();
             String cname = course.getCourseName();
-            System.out.println("Student ID: " + sname);
-            System.out.println("Student ID: " + cname);
+            System.out.println("Student Name: " + sname);
+            System.out.println("Course Name: " + cname);
 
             ps.executeUpdate();
             System.out.println("Enrollment added!");

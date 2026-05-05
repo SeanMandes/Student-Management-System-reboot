@@ -113,4 +113,28 @@ public class StudentDAO {
         }
     }
 
+    public int getStudentID(String student_name) {
+        int id = 0;
+        String sql = "select student_id from students where student_name = ?";
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setString(1, student_name);
+
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            id = resultSet.getInt("student_id");
+
+            System.out.println("Student ID: " + id);
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
 }

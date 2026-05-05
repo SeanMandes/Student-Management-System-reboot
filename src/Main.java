@@ -9,22 +9,24 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        StudentDAO sdao = new StudentDAO();
-        sdao.addStudent(new Student("John", "john@gmail.com", 21));
-
         /*
+         * StudentDAO sdao = new StudentDAO();
+         * sdao.addStudent(new Student("John", "john@gmail.com", 21));
+         * 
          * List<Student> students = sdao.getAllStudents();
          * for (Student student : students) {
          * System.out.println(student.getName());
          * }
          */
-
         // sdao.deleteStudent(9);
 
         // sdao.updateStudent(1, "CharlieBruh", "charliebruh@gmail.com", 20);
 
-        CourseDAO cdao = new CourseDAO();
-        cdao.addCourse(new Course("Math", "Dr. Joe"));
+        /*
+         * CourseDAO cdao = new CourseDAO();
+         * cdao.addCourse(new Course(1, "Math", "Dr. Joe"));
+         */
+
         /*
          * List<Course> courses = cdao.getAllCourses();
          * for (Course course : courses) {
@@ -36,11 +38,15 @@ public class Main {
 
         // cdao.updateCourse(4, "Psychology", "Prof. Jotaro");
 
-        EnrollmentDAO edao = new EnrollmentDAO();
-        /*
-         * Student student = new Student(1, "Charlie", "charlie@gmail.com", 19);
-         * Course course = new Course(1, "Physics", "Dr. Brown");
-         * edao.enrollStudent(student, course);
-         */
+        StudentDAO student = new StudentDAO();
+        student.getStudentID("Charlie");
+
+        CourseDAO course = new CourseDAO();
+        course.getCourseID("Physics");
+
+        // EnrollmentDAO edao = new EnrollmentDAO();
+
+        // edao.enrollStudent(student_id, course_id);
+
     }
 }
