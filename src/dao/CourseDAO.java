@@ -20,10 +20,7 @@ public class CourseDAO {
             ps.setInt(1, course.getId());
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next() && rs.getInt(1) > 0) {
-                return true;
-            }
-            connection.close();
+            return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }

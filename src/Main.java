@@ -44,8 +44,14 @@ public class Main {
         CourseDAO course = new CourseDAO();
         int course_id = course.getCourseID("History");
         System.out.println("------------------------------");
+
         EnrollmentDAO edao = new EnrollmentDAO();
+
         edao.enrollStudent(student_id, course_id);
+
+        edao.assignGrade("D-", student_id, course_id);
+
+        edao.removeEnrollment(student_id, course_id);
 
     }
 }

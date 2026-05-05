@@ -20,10 +20,7 @@ public class StudentDAO {
             ps.setString(1, student.getName());
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                return true;
-            }
-            connection.close();
+            return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
