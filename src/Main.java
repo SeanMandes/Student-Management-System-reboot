@@ -4,6 +4,8 @@ import dao.StudentDAO;
 import model.Course;
 import model.Enrollment;
 import model.Student;
+import service.ReportService;
+
 import java.util.List;
 
 public class Main {
@@ -38,20 +40,45 @@ public class Main {
 
         // cdao.updateCourse(4, "Psychology", "Prof. Jotaro");
 
-        StudentDAO student = new StudentDAO();
-        int student_id = student.getStudentID("charlie@gmail.com");
-        System.out.println("------------------------------");
-        CourseDAO course = new CourseDAO();
-        int course_id = course.getCourseID("History");
-        System.out.println("------------------------------");
+        /*
+         * StudentDAO student = new StudentDAO();
+         * CourseDAO course = new CourseDAO();
+         * EnrollmentDAO edao = new EnrollmentDAO();
+         * 
+         * // -------- Test Case 1 --------
+         * int s1 = student.getStudentID("charlie@gmail.com"); // 1
+         * int c1 = course.getCourseID("History"); // 4
+         * edao.enrollStudent(s1, c1);
+         * edao.assignGrade("D-", s1, c1);
+         * 
+         * // -------- Test Case 2 --------
+         * int s2 = student.getStudentID("emma@gmail.com"); // 3
+         * int c2 = course.getCourseID("Physics"); // 1
+         * edao.enrollStudent(s2, c2);
+         * edao.assignGrade("A", s2, c2);
+         * 
+         * // -------- Test Case 3 --------
+         * int s3 = student.getStudentID("ian@gmail.com"); // 7
+         * int c3 = course.getCourseID("Database Systems"); // 7
+         * edao.enrollStudent(s3, c3);
+         * edao.assignGrade("B+", s3, c3);
+         * 
+         * // -------- Test Case 4 --------
+         * int s4 = student.getStudentID("hannah@gmail.com"); // 6
+         * int c4 = course.getCourseID("English"); // 5
+         * edao.enrollStudent(s4, c4);
+         * edao.assignGrade("A-", s4, c4);
+         * 
+         * // -------- Test Case 5 --------
+         * int s5 = student.getStudentID("david@gmail.com"); // 2
+         * int c5 = course.getCourseID("Chemistry"); // 2
+         * edao.enrollStudent(s5, c5);
+         * edao.assignGrade("C", s5, c5);
+         * 
+         * // edao.removeEnrollment(student_id, course_id);
+         */
 
-        EnrollmentDAO edao = new EnrollmentDAO();
-
-        edao.enrollStudent(student_id, course_id);
-
-        edao.assignGrade("D-", student_id, course_id);
-
-        edao.removeEnrollment(student_id, course_id);
-
+        ReportService rp = new ReportService();
+        rp.studentPerCourse();
     }
 }

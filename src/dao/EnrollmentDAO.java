@@ -5,11 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.cj.protocol.a.SqlDateValueEncoder;
-
 import db.DBConnection;
-import model.Course;
-import model.Student;
 
 public class EnrollmentDAO {
     public void enrollStudent(int student_id, int course_id) {
