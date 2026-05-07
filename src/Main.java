@@ -82,31 +82,47 @@ public class Main {
         CourseDAO course = new CourseDAO();
         ReportService rp = new ReportService();
         // rp.fullReport();
-        rp.numberOfStudentForEachCourse();
-        
+        // rp.numberOfStudentForEachCourse();
+        System.out.println("1. Add Student\n" + //
+                "2. View Students\n" + //
+                "3. Add Course\n" + //
+                "4. Enroll Student\n" + //
+                "5. View Reports\n" + //
+                "6. Exit");
 
         Scanner sc = new Scanner(System.in);
         String input;
         do {
-        System.out.println("1. Add Student\n" + //
-                        "2. View Students\n" + //
-                        "3. Add Course\n" + //
-                        "4. Enroll Student\n" + //
-                        "5. View Reports\n" + //
-                        "6. Exit");
-        
-        switch (input = sc.nextLine()) {
-            case "1":
-                String
-                break;
-        
-            default:
-                break;
-        }
+            input = sc.nextLine();
+            switch (input) {
+                case "1":
+                    System.out.print("Name: \n");
+                    String name = sc.nextLine();
+
+                    System.out.print("Email: \n");
+                    String email = sc.nextLine();
+
+                    System.out.print("Age: \n");
+                    int age = sc.nextInt();
+                    sc.nextLine();
+
+                    StudentDAO sdao = new StudentDAO();
+                    sdao.addStudent(new Student(name, email, age));
+
+                    break;
+                case "6":
+                    System.out.println("Exist!");
+                default:
+                    System.out.println("1. Add Student\n" + //
+                            "2. View Students\n" + //
+                            "3. Add Course\n" + //
+                            "4. Enroll Student\n" + //
+                            "5. View Reports\n" + //
+                            "6. Exit");
+                    break;
+            }
 
         } while (!input.equals("6"));
-
-
-
+        sc.close();
     }
 }
