@@ -1,13 +1,9 @@
 package service;
 
-import java.net.ConnectException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.mysql.cj.protocol.Resultset;
 
 import db.DBConnection;
 
@@ -22,21 +18,43 @@ public class ReportService {
             Connection connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
+            System.out.printf("%-30s %18s %40s%n", "Course", "Students", "Grade");
+            System.out
+                    .println(
+                            "------------------------------------------------------------------------------------------");
 
             while (resultSet.next()) {
                 String s_name = resultSet.getString("student_name");
                 String c_name = resultSet.getString("course_name");
                 String grade = resultSet.getString("grade");
-                System.out.println(
-                        "Student name: " + s_name + " - " + "Course name: " + c_name + " - " + "Grade: " + grade);
+                System.out.printf("%-30s %18s %40s%n", s_name, c_name, grade);
             }
-
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void studentPerCourse() {
+    public void numberOfStudentForEachCourse() {
+        String sql = "SELECT c.course_name, COUNT(e.student_id)\r\n" + //
+                "FROM courses c\r\n" + //
+                "LEFT JOIN enrollment e ON c.course_id = e.course_id\r\n" + //
+                "GROUP BY c.course_name";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            System.out.printf("%-30s %10s%n", "Course", "Students");
+            System.out.println("------------------------------------------------");
+            while (rs.next()) {
+                String course_name = rs.getString("course_name");
+                int numberOfStudent = rs.getInt("COUNT(e.student_id)");
+                System.out.printf("%-30s %10s%n", course_name, numberOfStudent);
+            }
 
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

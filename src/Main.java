@@ -7,6 +7,7 @@ import model.Student;
 import service.ReportService;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -78,7 +79,34 @@ public class Main {
          * // edao.removeEnrollment(student_id, course_id);
          */
 
+        CourseDAO course = new CourseDAO();
         ReportService rp = new ReportService();
-        rp.studentPerCourse();
+        // rp.fullReport();
+        rp.numberOfStudentForEachCourse();
+        
+
+        Scanner sc = new Scanner(System.in);
+        String input;
+        do {
+        System.out.println("1. Add Student\n" + //
+                        "2. View Students\n" + //
+                        "3. Add Course\n" + //
+                        "4. Enroll Student\n" + //
+                        "5. View Reports\n" + //
+                        "6. Exit");
+        
+        switch (input = sc.nextLine()) {
+            case "1":
+                String
+                break;
+        
+            default:
+                break;
+        }
+
+        } while (!input.equals("6"));
+
+
+
     }
 }
