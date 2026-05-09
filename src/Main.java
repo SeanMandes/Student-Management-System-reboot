@@ -81,47 +81,54 @@ public class Main {
 
         CourseDAO course = new CourseDAO();
         ReportService rp = new ReportService();
+
         // rp.fullReport();
         // rp.numberOfStudentForEachCourse();
-        System.out.println("1. Add Student\n" + //
-                "2. View Students\n" + //
-                "3. Add Course\n" + //
-                "4. Enroll Student\n" + //
-                "5. View Reports\n" + //
-                "6. Exit");
 
+        StudentDAO sdao = new StudentDAO();
         Scanner sc = new Scanner(System.in);
         String input;
         do {
+            System.out.println("1. Add Student\n" + //
+                    "2. View Students\n" + //
+                    "3. Add Course\n" + //
+                    "4. Enroll Student\n" + //
+                    "5. View Reports\n" + //
+                    "6. Exit");
+
             input = sc.nextLine();
             switch (input) {
                 case "1":
-                    System.out.print("Name: \n");
-                    String name = sc.nextLine();
+                    System.out.print("Name: ");
+                    String name = sc.nextLine().toLowerCase();
 
-                    System.out.print("Email: \n");
+                    System.out.print("Email: ");
                     String email = sc.nextLine();
 
-                    System.out.print("Age: \n");
+                    System.out.print("Age: ");
                     int age = sc.nextInt();
                     sc.nextLine();
 
-                    StudentDAO sdao = new StudentDAO();
                     sdao.addStudent(new Student(name, email, age));
 
                     break;
+
+                case "2":
+                    List<Student> students = sdao.getAllStudents();
+                    for (Student student : students) {
+                        System.out.println(student.getName());
+                    }
+                    break;
+
+                case "3":
+
                 case "6":
-                    System.out.println("Exist!");
+                    System.out.println("Exit the program!");
+                    break;
                 default:
-                    System.out.println("1. Add Student\n" + //
-                            "2. View Students\n" + //
-                            "3. Add Course\n" + //
-                            "4. Enroll Student\n" + //
-                            "5. View Reports\n" + //
-                            "6. Exit");
+                    System.out.println("Invalid input");
                     break;
             }
-
         } while (!input.equals("6"));
         sc.close();
     }

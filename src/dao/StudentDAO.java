@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,11 @@ import model.Student;
 
 public class StudentDAO {
     public boolean studentExist(Student student) {
-        String sql = "select * from students where student_name = ?";
+        String sql = "select * from students where student_email = ?";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, student.getName());
+            ps.setString(1, student.getEmail());
 
             ResultSet rs = ps.executeQuery();
             return rs.next();
@@ -33,11 +34,6 @@ public class StudentDAO {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            if (studentExist(student)) {
-                System.out.println("Student already exist");
-                return;
-            }
-
             ps.setString(1, student.getName());
             ps.setString(2, student.getEmail());
             ps.setInt(3, student.getAge());
@@ -47,7 +43,8 @@ public class StudentDAO {
 
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Student already exist");
+            // e.printStackTrace();
         }
     }
 

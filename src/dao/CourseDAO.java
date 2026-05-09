@@ -33,11 +33,6 @@ public class CourseDAO {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            if (!courseExist(course)) {
-                System.out.println("Course already exist");
-                return;
-            }
-
             ps.setString(1, course.getCourseName());
             ps.setString(2, course.getInstructor());
 
@@ -46,7 +41,8 @@ public class CourseDAO {
 
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("You cant choose a course twice!");
+            // e.printStackTrace();
         }
     }
 
