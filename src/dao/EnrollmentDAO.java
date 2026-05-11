@@ -69,7 +69,36 @@ public class EnrollmentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public boolean CourseIdExist(int course_id) {
+        String sql = "select * from enrollment where course_id = ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, course_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void removeCourseEnrollment(int course_id) {
+        String sql = "delete from enrollment where course_id = ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, course_id);
+
+            preparedStatement.executeUpdate();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void assignGrade(String grade, int student_id, int course_id) {

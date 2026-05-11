@@ -25,21 +25,16 @@ public class Main {
 
         // sdao.updateStudent(1, "CharlieBruh", "charliebruh@gmail.com", 20);
 
-        /*
-         * CourseDAO cdao = new CourseDAO();
-         * cdao.addCourse(new Course(1, "Math", "Dr. Joe"));
-         */
+        CourseDAO cdao = new CourseDAO();
+        // cdao.addCourse(new Course(1, "Bio Chemistry"));
+        List<Course> courses = cdao.getAllCourses();
+        for (Course course : courses) {
+            System.out.println(course.getCourseName());
+        }
 
-        /*
-         * List<Course> courses = cdao.getAllCourses();
-         * for (Course course : courses) {
-         * System.out.println(course.getCourseName());
-         * }
-         */
+        cdao.deleteCourse(2);
 
-        // cdao.deleteCourse(3);
-
-        // cdao.updateCourse(4, "Psychology", "Prof. Jotaro");
+        // cdao.updateCourse(2, "Sociology");
 
         /*
          * StudentDAO student = new StudentDAO();
@@ -79,57 +74,77 @@ public class Main {
          * // edao.removeEnrollment(student_id, course_id);
          */
 
-        CourseDAO course = new CourseDAO();
-        ReportService rp = new ReportService();
+        /*
+         * StudentDAO student = new StudentDAO();
+         * CourseDAO course = new CourseDAO();
+         * EnrollmentDAO edao = new EnrollmentDAO();
+         * 
+         * // -------- Test Case 6 --------
+         * int s6 = student.getStudentID("fiona@gmail.com");
+         * int c6 = course.getCourseID("Biology");
+         * edao.enrollStudent(s6, c6);
+         * edao.assignGrade("B", s6, c6);
+         */
 
-        // rp.fullReport();
-        // rp.numberOfStudentForEachCourse();
+        // Example Remove Enrollment
+        // edao.removeEnrollment(s15, c15);
 
-        StudentDAO sdao = new StudentDAO();
-        Scanner sc = new Scanner(System.in);
-        String input;
-        do {
-            System.out.println("1. Add Student\n" + //
-                    "2. View Students\n" + //
-                    "3. Add Course\n" + //
-                    "4. Enroll Student\n" + //
-                    "5. View Reports\n" + //
-                    "6. Exit");
+        /*
+         * CourseDAO course = new CourseDAO();
+         * ReportService rp = new ReportService();
+         * 
+         * // rp.fullReport();
+         * // rp.numberOfStudentForEachCourse();
+         * 
+         * StudentDAO sdao = new StudentDAO();
+         * Scanner sc = new Scanner(System.in);
+         * String input;
+         * do {
+         * System.out.println("1. Add Student\n" + //
+         * "2. View Students\n" + //
+         * "3. Add Course\n" + //
+         * "4. Enroll Student\n" + //
+         * "5. View Reports\n" + //
+         * "6. Exit");
+         * 
+         * input = sc.nextLine();
+         * switch (input) {
+         * case "1":
+         * System.out.print("Name: ");
+         * String name = sc.nextLine().toLowerCase();
+         * 
+         * System.out.print("Email: ");
+         * String email = sc.nextLine();
+         * 
+         * System.out.print("Age: ");
+         * int age = sc.nextInt();
+         * sc.nextLine();
+         * 
+         * sdao.addStudent(new Student(name, email, age));
+         * 
+         * break;
+         * 
+         * case "2":
+         * List<Student> students = sdao.getAllStudents();
+         * for (Student student : students) {
+         * System.out.println(student.getName());
+         * }
+         * break;
+         * 
+         * case "3":
+         * String hi = "hi";
+         * break;
+         * case "6":
+         * System.out.println("Exit the program!");
+         * break;
+         * default:
+         * System.out.println("Invalid input");
+         * break;
+         * }
+         * } while (!input.equals("6"));
+         * sc.close();
+         */
 
-            input = sc.nextLine();
-            switch (input) {
-                case "1":
-                    System.out.print("Name: ");
-                    String name = sc.nextLine().toLowerCase();
-
-                    System.out.print("Email: ");
-                    String email = sc.nextLine();
-
-                    System.out.print("Age: ");
-                    int age = sc.nextInt();
-                    sc.nextLine();
-
-                    sdao.addStudent(new Student(name, email, age));
-
-                    break;
-
-                case "2":
-                    List<Student> students = sdao.getAllStudents();
-                    for (Student student : students) {
-                        System.out.println(student.getName());
-                    }
-                    break;
-
-                case "3":
-                    String hi = "hi";
-                case "6":
-                    System.out.println("Exit the program!");
-                    break;
-                default:
-                    System.out.println("Invalid input");
-                    break;
-            }
-        } while (!input.equals("6"));
-        sc.close();
     }
+
 }

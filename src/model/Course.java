@@ -5,15 +5,13 @@ public class Course {
     private String instructor;
     private int id;
 
-    public Course(String course_name, String instructor) {
+    public Course(String course_name) {
         this.course_name = course_name;
-        this.instructor = instructor;
     }
 
-    public Course(int id, String course_name, String instructor) {
+    public Course(int id, String course_name) {
         this.id = id;
         this.course_name = course_name;
-        this.instructor = instructor;
     }
 
     public int getId() {
@@ -24,7 +22,4 @@ public class Course {
         return course_name;
     }
 
-    public String getInstructor() {
-        return instructor;
-    }
 }

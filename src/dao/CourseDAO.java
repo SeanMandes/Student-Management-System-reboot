@@ -28,20 +28,19 @@ public class CourseDAO {
     }
 
     public void addCourse(Course course) {
-        String sql = "insert into courses(course_name, instructor) values (?, ?)";
+        String sql = "insert into courses(course_name) values (?)";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, course.getCourseName());
-            ps.setString(2, course.getInstructor());
 
             ps.executeUpdate();
             System.out.println("Course added!");
 
             connection.close();
         } catch (SQLException e) {
-            System.out.println("You cant choose a course twice!");
+            System.out.println("You cant add a course twice!");
             // e.printStackTrace();
         }
     }
@@ -57,8 +56,7 @@ public class CourseDAO {
             while (resultSet.next()) {
                 Course course = new Course(
                         resultSet.getInt("course_id"),
-                        resultSet.getString("course_name"),
-                        resultSet.getString("instructor"));
+                        resultSet.getString("course_name"));
                 courses.add(course);
             }
 
@@ -69,19 +67,19 @@ public class CourseDAO {
         return courses;
     }
 
-    public void updateCourse(int course_id, String course_name, String instructor) {
-        String sql = "update courses set course_name = ?, instructor = ? where course_id = ?";
+    public void updateCourse(int course_id, String course_name) {
+        String sql = "update courses set course_name = ? where course_id = ?";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setInt(3, course_id);
+            ps.setInt(2, course_id);
             ps.setString(1, course_name);
-            ps.setString(2, instructor);
 
             ps.executeUpdate();
             System.out.println("Course updated!");
             connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,9 +87,14 @@ public class CourseDAO {
 
     public void deleteCourse(int id) {
         String sql = "delete from courses where course_id = ?";
+        EnrollmentDAO eDao = new EnrollmentDAO();
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
+
+            if (eDao.CourseIdExist(id)) {
+                eDao.removeCourseEnrollment(id);
+            }
 
             ps.setInt(1, id);
 
