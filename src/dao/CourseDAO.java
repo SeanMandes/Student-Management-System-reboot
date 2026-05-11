@@ -86,21 +86,34 @@ public class CourseDAO {
     }
 
     public void deleteCourse(int id) {
-        String sql = "delete from courses where course_id = ?";
-        EnrollmentDAO eDao = new EnrollmentDAO();
-        try {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+        String deleteEnrollments = "DELETE FROM enrollment WHERE course_id = ?";
+        String deleteCourse = "DELETE FROM courses WHERE course_id = ?";
 
-            if (eDao.CourseIdExist(id)) {
-                eDao.removeCourseEnrollment(id);
+        try (Connection connection = DBConnection.getConnection()) {
+            connection.setAutoCommit(false);
+
+            try (PreparedStatement ps1 = connection.prepareStatement(deleteEnrollments);
+                    PreparedStatement ps2 = connection.prepareStatement(deleteCourse)) {
+
+                ps1.setInt(1, id);
+                ps1.executeUpdate();
+
+                ps2.setInt(1, id);
+                int rows = ps2.executeUpdate();
+
+                if (rows == 0) {
+                    connection.rollback();
+                    System.out.println("Course not found!");
+                    return;
+                }
+
+                connection.commit();
+                System.out.println("Course removed!");
+
+            } catch (SQLException e) {
+                connection.rollback();
+                e.printStackTrace();
             }
-
-            ps.setInt(1, id);
-
-            ps.executeUpdate();
-            System.out.println("Course removed!");
-            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();

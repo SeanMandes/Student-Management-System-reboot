@@ -32,7 +32,7 @@ public class Main {
             System.out.println(course.getCourseName());
         }
 
-        cdao.deleteCourse(2);
+        cdao.deleteCourse(7);
 
         // cdao.updateCourse(2, "Sociology");
 
