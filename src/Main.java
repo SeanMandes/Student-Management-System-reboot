@@ -121,7 +121,7 @@ public class Main {
                     break;
 
                 case "3":
-
+                    String hi = "hi";
                 case "6":
                     System.out.println("Exit the program!");
                     break;
