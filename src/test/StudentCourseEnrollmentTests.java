@@ -1,13 +1,18 @@
 package test;
 
+import java.util.List;
+
 import dao.CourseDAO;
 import dao.EnrollmentDAO;
+import dao.InstructorDAO;
 import dao.StudentDAO;
+import model.Instructor;
 
 public class StudentCourseEnrollmentTests {
     private static final StudentDAO studentDAO = new StudentDAO();
     private static final CourseDAO courseDAO = new CourseDAO();
     private static final EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
+    private static final InstructorDAO instructorDAO = new InstructorDAO();
 
     public static void runTests() {
         // =========================
@@ -143,6 +148,14 @@ public class StudentCourseEnrollmentTests {
          * enrollmentDAO.removeEnrollment(student1, course1);
          * 
          */
+
+        List<Instructor> instructors = instructorDAO.viewInstructor();
+        for (Instructor instructor : instructors) {
+            System.out.println("Instructor ID: " + instructor.getId() + "\n" +
+                    "Instructor Name: " + instructor.getInstructorName() + "\n" +
+                    "Instructor " + instructor.getInstructorEmail() + "\n" +
+                    "--------------------\"---------------");
+        }
 
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
