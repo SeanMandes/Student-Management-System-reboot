@@ -3,17 +3,12 @@ package model;
 public class Enrollment {
     private int courseId;
     private int studentId;
-    private int enrollmentId;
+    private int grade;
 
-    public Enrollment(int courseId, int studentId, int enrollmentId) {
+    public Enrollment(int courseId, int studentId, int grade) {
         this.courseId = courseId;
         this.studentId = studentId;
-        this.enrollmentId = enrollmentId;
-    }
-
-    public Enrollment(int courseId, int studentId) {
-        this.courseId = courseId;
-        this.studentId = studentId;
+        this.grade = grade;
     }
 
     public int getCourseId() {
@@ -24,8 +19,8 @@ public class Enrollment {
         return studentId;
     }
 
-    public int getEnrollmentId() {
-        return enrollmentId;
+    public int getGrade() {
+        return grade;
     }
 
 }

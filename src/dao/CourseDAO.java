@@ -67,14 +67,15 @@ public class CourseDAO {
         return courses;
     }
 
-    public void updateCourse(int course_id, String course_name) {
-        String sql = "update courses set course_name = ? where course_id = ?";
+    public void updateCourse(int course_id, String course_name, String grade) {
+        String sql = "update courses set course_name = ? and grade = ? where course_id = ?";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setInt(2, course_id);
+            ps.setInt(3, course_id);
             ps.setString(1, course_name);
+            ps.setString(2, grade);
 
             ps.executeUpdate();
             System.out.println("Course updated!");
