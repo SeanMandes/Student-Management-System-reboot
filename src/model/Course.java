@@ -2,7 +2,6 @@ package model;
 
 public class Course {
     private String course_name;
-    private String instructor;
     private int id;
 
     public Course(String course_name) {
