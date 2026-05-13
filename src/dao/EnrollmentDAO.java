@@ -1,11 +1,15 @@
 package dao;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import db.DBConnection;
+import model.Enrollment;
 
 public class EnrollmentDAO {
     public void enrollStudent(int student_id, int course_id) {
@@ -29,6 +33,42 @@ public class EnrollmentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Enrollment> viewEnrollments() {
+        List<Enrollment> enrollments = new ArrayList<>();
+        String sql = "select s.student_name, c.course_name, e.grade\r\n" + //
+                "from students as s\r\n" + //
+                "left join enrollment  as e on s.student_id = e.student_id\r\n" + //
+                "left join courses as c on c.course_id = e.course_id;\r\n";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                String sname = resultSet.getString("student_name");
+                String cname = resultSet.getString("course_name");
+                String grade = resultSet.getString("grade");
+                if (sname == null) {
+                    sname = "Unassigned";
+                }
+                if (cname == null) {
+                    cname = "Unassigned";
+                }
+                if (grade == null) {
+                    grade = "Unassigned";
+                }
+
+                Enrollment enrollment = new Enrollment(
+                        sname, cname, grade);
+                enrollments.add(enrollment);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return enrollments;
     }
 
     public boolean enrollmentAlreadyExist(int student_id, int course_id) {

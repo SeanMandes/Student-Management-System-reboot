@@ -38,7 +38,13 @@ public class Main {
         // cdao.updateCourse(4, "Art");
 
         EnrollmentDAO edao = new EnrollmentDAO();
-
+        List<Enrollment> enrollments = edao.viewEnrollments();
+        for (Enrollment enrollment : enrollments) {
+            System.out.println("COURSE NAME: " + enrollment.getCourseName() + "\n" +
+                    "STUDENT NAME: " + enrollment.getStudentName() + "\n" +
+                    "GRADE: " + enrollment.getGrade() + "\n" +
+                    "---------------");
+        }
         /*
          * StudentDAO student = new StudentDAO();
          * CourseDAO course = new CourseDAO();
