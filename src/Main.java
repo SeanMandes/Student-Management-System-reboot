@@ -35,7 +35,9 @@ public class Main {
          */
 
         // cdao.deleteCourse(1);
-        // cdao.updateCourse(4, "Sociology");
+        // cdao.updateCourse(4, "Art");
+
+        EnrollmentDAO edao = new EnrollmentDAO();
 
         /*
          * StudentDAO student = new StudentDAO();
