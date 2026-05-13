@@ -121,7 +121,7 @@ public class CourseDAO {
 
     public int getCourseID(String course_name) {
         int id = -1;
-        String sql = "select * from courses where course_name = ?";
+        String sql = "select course_id from courses where course_name = ?";
 
         try {
             Connection connection = DBConnection.getConnection();
@@ -132,12 +132,6 @@ public class CourseDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             id = resultSet.getInt("course_id");
-            String name = resultSet.getString("course_name");
-            String instructor = resultSet.getString("instructor");
-
-            System.out.println("course id = " + id);
-            System.out.println("course name = " + name);
-            System.out.println("instructor name = " + instructor);
 
             connection.close();
         } catch (SQLException e) {

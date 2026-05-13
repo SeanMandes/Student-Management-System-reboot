@@ -109,7 +109,7 @@ public class StudentDAO {
 
     public int getStudentID(String student_email) {
         int id = -1;
-        String sql = "select * from students where student_email = ?";
+        String sql = "select student_id from students where student_email = ?";
 
         try {
             Connection connection = DBConnection.getConnection();
@@ -120,14 +120,6 @@ public class StudentDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             id = resultSet.getInt("student_id");
-            String name = resultSet.getString("student_name");
-            String email = resultSet.getString("student_email");
-            int age = resultSet.getInt("age");
-
-            System.out.println("student id = " + id);
-            System.out.println("name = " + name);
-            System.out.println("email = " + email);
-            System.out.println("age = " + age);
 
             connection.close();
         } catch (SQLException e) {
