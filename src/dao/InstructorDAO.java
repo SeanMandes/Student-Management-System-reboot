@@ -37,8 +37,15 @@ public class InstructorDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return instructors;
+    }
+
+    public void assignInstructorToCourse() {
+
+    }
+
+    public void removeAssignment() {
+
     }
 
 }

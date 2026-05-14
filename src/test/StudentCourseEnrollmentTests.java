@@ -149,13 +149,15 @@ public class StudentCourseEnrollmentTests {
          * 
          */
 
-        List<Instructor> instructors = instructorDAO.viewInstructor();
-        for (Instructor instructor : instructors) {
-            System.out.println("Instructor ID: " + instructor.getId() + "\n" +
-                    "Instructor Name: " + instructor.getInstructorName() + "\n" +
-                    "Instructor " + instructor.getInstructorEmail() + "\n" +
-                    "--------------------\"---------------");
-        }
+        /*
+         * List<Instructor> instructors = instructorDAO.viewInstructor();
+         * for (Instructor instructor : instructors) {
+         * System.out.println("Instructor ID: " + instructor.getId() + "\n" +
+         * "Instructor Name: " + instructor.getInstructorName() + "\n" +
+         * "Instructor " + instructor.getInstructorEmail() + "\n" +
+         * "--------------------\"---------------");
+         * }
+         */
 
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
