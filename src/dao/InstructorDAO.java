@@ -12,8 +12,24 @@ import db.DBConnection;
 import model.Instructor;
 
 public class InstructorDAO {
-    public void addInstructor() {
+    public void addInstructor(int instructor_id, String instructor_name, String instructor_email) {
+        String sql = "insert into instructors (instructor_id, instructor_name, instructor_email) values(?, ?, ?)";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
 
+            ps.setInt(1, instructor_id);
+            ps.setString(2, instructor_name);
+            ps.setString(3, instructor_email);
+
+            ps.executeUpdate();
+            System.out.println("Instructor added!");
+
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Instructor is already existed");
+            // e.printStackTrace();
+        }
     }
 
     public List<Instructor> viewInstructor() {
@@ -36,7 +52,8 @@ public class InstructorDAO {
             }
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Theres an error with the instructor list!");
+            // e.printStackTrace();
         }
         return instructors;
     }
@@ -76,13 +93,28 @@ public class InstructorDAO {
 
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Instructor doesnt exist!");
+            // e.printStackTrace();
         }
-
         return id;
     }
 
-    public void removeAssignment() {
+    public void removeAssignment(int course_id, int instructor_id) {
+        String sql = "delete from instructors_courses where course_id = ? and instructor_id = ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setInt(1, course_id);
+            ps.setInt(2, instructor_id);
+
+            ps.executeUpdate();
+            System.out.println("Instructor assignment for the course has been removed!");
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
