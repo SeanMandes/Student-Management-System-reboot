@@ -18,11 +18,6 @@ public class EnrollmentDAO {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            if (enrollmentAlreadyExist(student_id, course_id)) {
-                System.out.println("Enrollment already existed");
-                return;
-            }
-
             ps.setInt(1, student_id);
             ps.setInt(2, course_id);
 
@@ -31,7 +26,8 @@ public class EnrollmentDAO {
 
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Enrollment already existed");
+            // e.printStackTrace();
         }
     }
 

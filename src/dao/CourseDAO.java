@@ -28,7 +28,7 @@ public class CourseDAO {
     }
 
     public void addCourse(Course course) {
-        String sql = "insert into courses(course_name) values (?)";
+        String sql = "insert into courses (course_name) values (?)";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);

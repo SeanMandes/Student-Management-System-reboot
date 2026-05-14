@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -40,8 +41,45 @@ public class InstructorDAO {
         return instructors;
     }
 
-    public void assignInstructorToCourse() {
+    public void assignInstructorToCourse(int course_id, int instructor_id) {
+        String sql = "insert into instructors_courses (course_id, instructor_id) values (?, ?)";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
 
+            ps.setInt(1, course_id);
+            ps.setInt(2, instructor_id);
+
+            ps.executeUpdate();
+            System.out.println("Instructor assigned!");
+
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Instructor already assigned to this course!");
+            e.printStackTrace();
+        }
+    }
+
+    public int getInstructorID(String instructor_name) {
+        int id = -1;
+        String sql = "select instructor_id from instructors where instructor_name = ?";
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, instructor_name);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            id = resultSet.getInt("instructor_id");
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
     }
 
     public void removeAssignment() {

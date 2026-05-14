@@ -6,7 +6,6 @@ import dao.CourseDAO;
 import dao.EnrollmentDAO;
 import dao.InstructorDAO;
 import dao.StudentDAO;
-import model.Instructor;
 
 public class StudentCourseEnrollmentTests {
     private static final StudentDAO studentDAO = new StudentDAO();
@@ -158,6 +157,11 @@ public class StudentCourseEnrollmentTests {
          * "--------------------\"---------------");
          * }
          */
+
+        int course_id = courseDAO.getCourseID("English");
+        int instructor_id = instructorDAO.getInstructorID("Dr. Brown");
+
+        instructorDAO.assignInstructorToCourse(course_id, instructor_id);
 
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
