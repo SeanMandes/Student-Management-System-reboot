@@ -12,15 +12,14 @@ import db.DBConnection;
 import model.Instructor;
 
 public class InstructorDAO {
-    public void addInstructor(int instructor_id, String instructor_name, String instructor_email) {
-        String sql = "insert into instructors (instructor_id, instructor_name, instructor_email) values(?, ?, ?)";
+    public void addInstructor(String instructor_name, String instructor_email) {
+        String sql = "insert into instructors (instructor_name, instructor_email) values(?, ?)";
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setInt(1, instructor_id);
-            ps.setString(2, instructor_name);
-            ps.setString(3, instructor_email);
+            ps.setString(1, instructor_name);
+            ps.setString(2, instructor_email);
 
             ps.executeUpdate();
             System.out.println("Instructor added!");

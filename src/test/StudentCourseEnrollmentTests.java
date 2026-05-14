@@ -156,12 +156,15 @@ public class StudentCourseEnrollmentTests {
          * "Instructor " + instructor.getInstructorEmail() + "\n" +
          * "--------------------\"---------------");
          * }
+         * 
+         * 
+         * int course_id = courseDAO.getCourseID("Physics");
+         * int instructor_id = instructorDAO.getInstructorID("Dr. Brown");
+         * 
+         * instructorDAO.addInstructor("Dr. Charles", "charles@gmail.com");
+         * 
+         * instructorDAO.removeAssignment(course_id, instructor_id);
          */
-
-        int course_id = courseDAO.getCourseID("Physics");
-        int instructor_id = instructorDAO.getInstructorID("Dr. Brown");
-
-        instructorDAO.removeAssignment(course_id, instructor_id);
 
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
