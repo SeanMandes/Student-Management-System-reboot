@@ -56,7 +56,7 @@ public class InstructorDAO {
             connection.close();
         } catch (SQLException e) {
             System.out.println("Instructor already assigned to this course!");
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 

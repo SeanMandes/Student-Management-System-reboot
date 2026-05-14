@@ -12,21 +12,6 @@ import db.DBConnection;
 import model.Course;
 
 public class CourseDAO {
-    public boolean courseExist(Course course) {
-        String sql = "select * from courses where course_name = ?";
-        try {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, course.getId());
-
-            ResultSet rs = ps.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public void addCourse(Course course) {
         String sql = "insert into courses (course_name) values (?)";
         try {
