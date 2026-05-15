@@ -6,12 +6,14 @@ import dao.CourseDAO;
 import dao.EnrollmentDAO;
 import dao.InstructorDAO;
 import dao.StudentDAO;
+import service.ReportService;
 
 public class StudentCourseEnrollmentTests {
     private static final StudentDAO studentDAO = new StudentDAO();
     private static final CourseDAO courseDAO = new CourseDAO();
     private static final EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
     private static final InstructorDAO instructorDAO = new InstructorDAO();
+    private static final ReportService reportService = new ReportService();
 
     public static void runTests() {
         // =========================
@@ -165,6 +167,9 @@ public class StudentCourseEnrollmentTests {
          * 
          * instructorDAO.removeAssignment(course_id, instructor_id);
          */
+
+        // reportService.numberOfStudentForEachCourse();
+        // reportService.fullReport();
 
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
