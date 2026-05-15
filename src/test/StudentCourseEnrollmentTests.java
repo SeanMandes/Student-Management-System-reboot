@@ -6,6 +6,9 @@ import dao.CourseDAO;
 import dao.EnrollmentDAO;
 import dao.InstructorDAO;
 import dao.StudentDAO;
+import dao.UserDAO;
+import security.AuthService;
+import security.LoginService;
 import service.ReportService;
 
 public class StudentCourseEnrollmentTests {
@@ -14,6 +17,9 @@ public class StudentCourseEnrollmentTests {
     private static final EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
     private static final InstructorDAO instructorDAO = new InstructorDAO();
     private static final ReportService reportService = new ReportService();
+    private static final LoginService loginService = new LoginService();
+    private static final AuthService authService = new AuthService();
+    private static final UserDAO userDAO = new UserDAO();
 
     public static void runTests() {
         // =========================
@@ -170,6 +176,10 @@ public class StudentCourseEnrollmentTests {
 
         // reportService.numberOfStudentForEachCourse();
         // reportService.fullReport();
+
+        String email = "johnpork@gmail.com";
+
+        userDAO.findUserByEmail(email);
 
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
