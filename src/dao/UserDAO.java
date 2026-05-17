@@ -8,10 +8,12 @@ import java.sql.PreparedStatement;
 
 import db.DBConnection;
 import model.User;
+import security.Role;
 
 public class UserDAO {
 
-    public void findUserByEmail(String user_email) {
+    public User findUserByEmail(String user_email) {
+        User user_data = null;
         String sql = "SELECT * FROM user WHERE user_email = ?";
         try {
             Connection connection = DBConnection.getConnection();
@@ -24,6 +26,9 @@ public class UserDAO {
                 String email = rs.getString("user_email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
+
+                user_data = new User(id, email, password, Role.valueOf(role));
+
                 System.out.println(
                         "USER ID: " + id + "\n" +
                                 "USER EMAIL: " + email + "\n" +
@@ -36,10 +41,29 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return user_data;
     }
 
-    public void validateCredentials() {
+    public boolean validateCredentials(String email, String password) {
+        User user_data = findUserByEmail(email);
+        String sql = "select password from user where user_email = ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
 
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            String pass = rs.getString("password");
+
+            if (user_data.getPassword().equals(pass)) {
+                return true;
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void createUser(User user) {

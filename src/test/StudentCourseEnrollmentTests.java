@@ -180,11 +180,12 @@ public class StudentCourseEnrollmentTests {
         // reportService.numberOfStudentForEachCourse();
         // reportService.fullReport();
 
-        // String email = "johnpork@gmail.com";
+        String email = "johnpork@gmail.com";
 
-        // userDAO.findUserByEmail(email);
+        userDAO.findUserByEmail(email);
 
-        userDAO.createUser(new User("brown@university.edu", "123456789", Role.ADMIN));
+        // userDAO.createUser(new User("brown@university.edu", "123456789",
+        // Role.ADMIN));
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
 
