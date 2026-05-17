@@ -1,19 +1,33 @@
 package security;
 
+import dao.UserDAO;
+import model.User;
+
 public class AuthService {
-    public void login() {
 
+    private static final UserDAO userDAO = new UserDAO();
+
+    public User login(String email, String password) {
+        boolean check = userDAO.validateCredentials(email, password);
+        if (check) {
+            return userDAO.findUserByEmail(email);
+        }
+        System.out.println("Invalid email or password.");
+        return null;
     }
 
-    public void isAdmin() {
-
+    public boolean isAdmin(User user) {
+        if (user == null) {
+            return false;
+        }
+        return user.getRole().equals(Role.ADMIN);
     }
 
-    public void isStudent() {
-
+    public boolean isStudent(User user) {
+        if (user == null) {
+            return false;
+        }
+        return user.getRole().equals(Role.STUDENT);
     }
 
-    public void canAssignInstructor() {
-
-    }
 }

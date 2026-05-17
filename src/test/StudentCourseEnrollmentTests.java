@@ -187,7 +187,9 @@ public class StudentCourseEnrollmentTests {
         // userDAO.createUser(new User("brown@university.edu", "123456789",
         // Role.ADMIN));
 
-        System.out.println(userDAO.validateCredentials("johnpork@gmail.com", "12345"));
+        // System.out.println(userDAO.validateCredentials("johnpork@gmail.com",
+        // "12345"));
+
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
 
