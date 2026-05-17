@@ -46,23 +46,17 @@ public class UserDAO {
 
     public boolean validateCredentials(String email, String password) {
         User user_data = findUserByEmail(email);
-        String sql = "select password from user where user_email = ?";
-        try {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, email);
 
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            String pass = rs.getString("password");
-
-            if (user_data.getPassword().equals(pass)) {
-                return true;
-            }
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (user_data == null) {
+            System.out.println("User is incorrect!");
+            return false;
         }
+
+        if (user_data.getPassword().equals(password)) {
+            return true;
+        }
+
+        System.out.println("Wrong password");
         return false;
     }
 
