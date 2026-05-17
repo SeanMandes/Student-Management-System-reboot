@@ -1,19 +1,21 @@
 package model;
 
+import security.Role;
+
 public class User {
     private int userID;
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
-    public User(int userID, String email, String password, String role) {
+    public User(int userID, String email, String password, Role role) {
         this.userID = userID;
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    public User(String email, String password, String role) {
+    public User(String email, String password, Role role) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -31,7 +33,7 @@ public class User {
         return password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 

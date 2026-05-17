@@ -2,10 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
 import db.DBConnection;
+import model.User;
 
 public class UserDAO {
 
@@ -40,8 +42,25 @@ public class UserDAO {
 
     }
 
-    public void createUser() {
+    public void createUser(User user) {
+        String sql = "insert into user (user_email, password, role) values (?,?,?)";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
 
+            ps.setString(1, user.getEmail());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getRole().toString());
+
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
+// after done with the function calls, try and wrap it up with the API calls.
+// Test it, see how it runs
+// import Spring Boot

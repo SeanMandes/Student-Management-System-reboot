@@ -7,8 +7,11 @@ import dao.EnrollmentDAO;
 import dao.InstructorDAO;
 import dao.StudentDAO;
 import dao.UserDAO;
+import model.Student;
+import model.User;
 import security.AuthService;
 import security.LoginService;
+import security.Role;
 import service.ReportService;
 
 public class StudentCourseEnrollmentTests {
@@ -177,10 +180,11 @@ public class StudentCourseEnrollmentTests {
         // reportService.numberOfStudentForEachCourse();
         // reportService.fullReport();
 
-        String email = "johnpork@gmail.com";
+        // String email = "johnpork@gmail.com";
 
-        userDAO.findUserByEmail(email);
+        // userDAO.findUserByEmail(email);
 
+        userDAO.createUser(new User("brown@university.edu", "123456789", Role.ADMIN));
         System.out.println("\n========== ALL TESTS COMPLETED ==========");
     }
 
