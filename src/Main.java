@@ -1,11 +1,8 @@
-import console.ControllerUI;
-import test.StudentCourseEnrollmentTests;
+import controller.ControllerUI;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        // StudentCourseEnrollmentTests.runTests();
 
         ControllerUI.run();
     }

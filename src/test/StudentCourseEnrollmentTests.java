@@ -10,7 +10,6 @@ import dao.UserDAO;
 import model.Student;
 import model.User;
 import security.AuthService;
-import security.LoginService;
 import security.Role;
 import service.ReportService;
 
@@ -20,7 +19,6 @@ public class StudentCourseEnrollmentTests {
     private static final EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
     private static final InstructorDAO instructorDAO = new InstructorDAO();
     private static final ReportService reportService = new ReportService();
-    private static final LoginService loginService = new LoginService();
     private static final AuthService authService = new AuthService();
     private static final UserDAO userDAO = new UserDAO();
 
